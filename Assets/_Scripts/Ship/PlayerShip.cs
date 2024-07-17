@@ -75,7 +75,7 @@ public class PlayerShip : MonoBehaviour
         {
             float rotationAngle = playerShip.transform.rotation.eulerAngles.z;
             Vector3 direction = Quaternion.Euler(0f, 0f, rotationAngle) * Vector3.up;
-
+            direction = new Vector3(direction.x, direction.y, 100f);
             if (bulletType == BulletType.PlayerBullet1)
             {
                 HandleBulletSpawning(playerBullet, direction);
