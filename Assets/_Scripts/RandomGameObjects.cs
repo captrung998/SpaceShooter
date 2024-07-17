@@ -12,7 +12,7 @@ public class RandomGameObjects : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(cooldown);
+        //Debug.Log(cooldown);
     }
 
     private void Start()
