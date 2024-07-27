@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class PlayerShip : MonoBehaviour
     [SerializeField] private List<SpawnEnemy> listSpawnObject;
 
     private float speed = 0.2f;
+    private int time = 10;
 
     public BulletType bulletType;
 
@@ -28,10 +30,28 @@ public class PlayerShip : MonoBehaviour
     void Update()
     {
         MoveShip();
-        if (ScoreManager.Instance.score == 10)
+        if (ScoreManager.Instance.score % 100 == 0 && ScoreManager.Instance.score != 0)
         {
-            bulletType = BulletType.PlayerBullet2;
+            if (time != 0)
+            {
+                bulletType = BulletType.PlayerBullet2;
+                StartCoroutine(CountTime());
+            }
+            else
+            {
+                time = 10;
+            }
         }
+        else
+        {
+            bulletType = BulletType.PlayerBullet1;
+        }
+    }
+
+    private IEnumerator CountTime()
+    {
+        time--;
+        yield return new WaitForSeconds(1f);
     }
 
     public GameObject FindEnemyNearest()
