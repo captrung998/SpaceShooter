@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class DestroyEnemy : MonoBehaviour
 {
+ 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("PlayerBullet") || other.CompareTag("Player"))
+        if (other.CompareTag("PlayerBullet"))
         {
-            //Destroy(gameObject);
+           
         }
     }
 

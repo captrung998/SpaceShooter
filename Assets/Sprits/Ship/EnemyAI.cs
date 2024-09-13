@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
-using DG.Tweening;
+using UnityEngine.TextCore.Text;
+
 
 public class EnemyAI : MonoBehaviour
 {
+    [SerializeField] GameObject exploion;
     public Seeker seeker;
     private Transform target;
     public float moveSpeed;
@@ -95,8 +97,7 @@ public class EnemyAI : MonoBehaviour
 
             ApplySeparation();
 
-
-            transform.DOMove(transform.position + force, 0).SetEase(Ease.Linear);
+            transform.position += force;
 
             // Rotate enemy towards target
             if (direction != Vector2.zero)
@@ -133,6 +134,16 @@ public class EnemyAI : MonoBehaviour
         if (spawner != null)
         {
             spawner.EnemyDestroyed(gameObject);  // Notify spawner that the enemy was destroyed
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("PlayerBullet"))
+        {
+            exploion.SetActive(true);
+            characterSR.enabled = false;
+            moveSpeed = 0;
+
         }
     }
 }

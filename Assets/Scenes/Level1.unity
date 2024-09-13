@@ -11063,6 +11063,10 @@ PrefabInstance:
       value: PlayerShip
       objectReference: {fileID: 0}
     - target: {fileID: 962692753394066776, guid: e02a1f0718e5145449e1000ba1f2874e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 962692753394066776, guid: e02a1f0718e5145449e1000ba1f2874e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -11114,8 +11118,17 @@ PrefabInstance:
       propertyPath: bulletPrefab3
       value: 
       objectReference: {fileID: 191015703434933533, guid: 14fb231bd5b244b4a819b37b72ce0395, type: 3}
+    - target: {fileID: 6855427931797714476, guid: e02a1f0718e5145449e1000ba1f2874e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630814995716739916, guid: e02a1f0718e5145449e1000ba1f2874e, type: 3}
+      propertyPath: shield
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6855427931797714476, guid: e02a1f0718e5145449e1000ba1f2874e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e02a1f0718e5145449e1000ba1f2874e, type: 3}
@@ -29475,7 +29488,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundBackGround: {fileID: 8300000, guid: e1c5e8eddf520f44c929b24586d8cd06, type: 3}
-  audioSource: {fileID: 0}
   gameOver: {fileID: 302118165}
 --- !u!82 &1409342157
 AudioSource:

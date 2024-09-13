@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class HealthPlayer : Player
@@ -18,11 +19,13 @@ public class HealthPlayer : Player
         {
             if (currenHealth > 0)
             {
+        
                 currenHealth -= 10f;
+               
                 ManagerController.Instance.UpdateBar(currenHealth, maxHealth);
                 Destroy(other.gameObject);
             }
-            else if (currenHealth == 0)
+            else if (currenHealth <= 0)
                 ManagerController.Instance.GameOver();
 
         }

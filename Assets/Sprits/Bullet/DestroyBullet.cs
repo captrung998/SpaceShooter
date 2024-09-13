@@ -1,43 +1,42 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DestroyBullet : MonoBehaviour
 {
-    [SerializeField] private float timeDestroy = 5f;
     [SerializeField] private AudioClip soundExplosion;
-    ManagerController controller;
+    [SerializeField] protected GameObject explosion;
 
     private AudioSource audioSource;
+    private bool hasCollided = false; // Flag to track if collision has occurred
 
     private void Start()
     {
+        // Try to get the AudioSource component
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = soundExplosion;
-        StartCoroutine(DestroyDelay());
-    }
 
-    private IEnumerator DestroyDelay()
-    {
-        while (true)
+        // If it doesn't exist, add the AudioSource component
+        if (audioSource == null)
         {
-            Destroy(gameObject, timeDestroy);
-            yield return new WaitForSeconds(timeDestroy);
+            audioSource = gameObject.AddComponent<AudioSource>();
         }
-        yield return null;
+
+        // Assign the explosion sound to the AudioSource
+        audioSource.clip = soundExplosion;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (hasCollided)
+            return; // If the bullet has already collided, do nothing
+
+        if (other.CompareTag("Enemy"))
         {
+            hasCollided = true;
             audioSource.Play();
-            audioSource.transform.SetParent(null);
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-            Destroy(gameObject, audioSource.clip.length);
+            Destroy(other.gameObject, audioSource.clip.length);            
+            Destroy(gameObject, audioSource.clip.length / 8);
             ManagerController.Instance.UpdateScore(1);
+
         }
     }
 }
